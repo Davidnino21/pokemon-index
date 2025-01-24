@@ -1,6 +1,7 @@
 const pokeCard = document.querySelector(".row");
 let url = "https://pokeapi.co/api/v2/pokemon?limit=9"
 
+
 function getPokemons() {
     fetch(url)
         .then(function (resp) {
@@ -22,21 +23,41 @@ function renderPokemons(pokemons) {
         const card = document.createElement("div");
         card.classList.add("card");
         card.style.width = "20rem";
-        
+
         const imgSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.url.split("/")[6]}.png`;
         console.log(imgSrc)
-        
+
         card.innerHTML = `
-        <img src="${imgSrc}" class="card-img-top" alt="${pokemon.name}">
-        <div class="card-body">
-        <h5 class="card-title">${pokemon.name}</h5>
-        <p class="card-text">A Pokémon from the Pokémon API.</p>
-        <a href="pokedetails.html?url=${pokemon.url}" class="btn btn-primary" id= "viewBtn">View Details</a>
-        </div>
+         <div class="card-face card-front">
+                    <img src="${imgSrc}" class="card-img-top" alt="${pokemon.name}">
+                    <div class="card-body">
+                        <h5 class="card-title">${pokemon.name}</h5>
+                        <p class="card-text">A Pokémon from the Pokémon API.</p>
+                        <button class="btn btn-primary viewBtn">View Details</button>
+                    </div>
+                </div>
+                <div class="card-face card-back">
+                    <div class="card-body">
+                        <h5 class="card-title">${pokemon.name}</h5>
+                        <p class="card-text">Details about ${pokemon.name}</p>
+                        <button class="btn btn-primary backBtn">Back</button>
+                    </div>
+                </div>
         `;
-        
+
         pokeCard.appendChild(card);
     });
+    document.querySelectorAll(".viewBtn").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            e.target.closest(".card").classList.toggle("is-flipped")
+        })
+    })
+    document.querySelectorAll(".backBtn").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            e.target.closest(".card").classList.toggle("is-flipped")
+        })
+    })
+
 }
 
 
@@ -46,4 +67,5 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const nextBtn = document.querySelector("#nextBtn")
     nextBtn.addEventListener("click", getPokemons)
+
 })

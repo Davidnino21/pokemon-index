@@ -35,6 +35,24 @@
     </nav>
     <main class="container text-center mt-5 mb-5" id="pokeCards">
         <div class="row justify-content-center gap-4 m-3">
+        
+            <div class="card">
+                <div class="card-face card-front">
+                    <img src="${imgSrc}" class="card-img-top" alt="${pokemon.name}">
+                    <div class="card-body">
+                        <h5 class="card-title">${pokemon.name}</h5>
+                        <p class="card-text">A Pokémon from the Pokémon API.</p>
+                        <button class="btn btn-primary" id="viewBtn">View Details</button>
+                    </div>
+                </div>
+                <div class="card-face card-back">
+                    <div class="card-body">
+                        <h5 class="card-title">${pokemon.name}</h5>
+                        <p class="card-text">Details about ${pokemon.name}</p>
+                        <button class="btn btn-primary" id="backBtn">Back</button>
+                    </div>
+                </div>
+            </div>
         </div>
         <button class="btn btn-outline-success text-white m-4" id="nextBtn" type="next">Next</button>
     </main>
