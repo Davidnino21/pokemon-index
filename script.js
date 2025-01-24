@@ -23,8 +23,7 @@ function renderPokemons(pokemons) {
         const card = document.createElement("div");
         card.classList.add("card");
         card.style.width = "20rem";
-
-        const imgSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.url.split("/")[6]}.png`;
+        const imgSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.url.split("/")[6]}.svg`;
         console.log(imgSrc)
 
         card.innerHTML = `
