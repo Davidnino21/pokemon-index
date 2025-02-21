@@ -1,6 +1,7 @@
 // Select the container where pokemon card will be displayed
 const pokeCard = document.querySelector(".row")
 
+
 // Select navigation buttons for pagination
 const nextBtn = document.querySelector("#nextBtn")
 const previousBtn = document.querySelector("#previousBtn")
@@ -36,6 +37,7 @@ function searchPokemon(link) {
         })
         .then(function (data) {
             console.log(data)
+            searchPokemon(data)
         })
         .catch(function (error) {
             console.error("Error fetching data from the Pokemon API:", error)
@@ -172,6 +174,32 @@ function renderDetails(abilities, stats, element, types) {
     })
 
 }
+
+function renderSearchedPokemon (pokemon) {
+    const pokeSearch = document.querySelector(".searchedPokemon")
+    pokeCard.innerHTML = "" // clear previous content
+        //create a card for each pokemon
+        const searchCard = document.createElement("div")
+        card.classList.add("card")
+        card.style.width = "20rem"
+
+        // construct the image URL base on pokemon id
+        const imgSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.url.split("/")[6]}.svg`
+
+        // define the cards front content
+        card.innerHTML = `
+         <div class="card-face card-front">
+                    <img src="${imgSrc}" class="card-img-top" alt="${pokemon.name}">
+                    <div class="card-body">
+                        <h5 class="card-title">${pokemon.name}</h5>
+                        <button class="btn btn-primary viewBtn">View Details</button>
+                    </div>
+                </div>
+        `;
+
+        pokeSearch.appendChild(searchCard)
+    }
+
 
 // Event listener to load pokemon when the page is fully loaded
 document.addEventListener("DOMContentLoaded", function () {
